@@ -12,7 +12,14 @@ function CardBody({ item }) {
     return (
         <div className={cx('wrapper')}>
             <Link to={`/product/${item._id}`}>
-                <img src={item?.images?.[0]} alt="" />
+                <img
+                    src={
+                        item?.images?.[0]?.startsWith('http')
+                            ? item?.images?.[0]
+                            : `${import.meta.env.VITE_API_URL}/uploads/images/${item?.images?.[0]}`
+                    }
+                    alt=""
+                />
             </Link>
             <div className={cx('content')}>
                 <h4>{item?.name}</h4>

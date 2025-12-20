@@ -52,8 +52,8 @@ class PaymentsController {
                 var requestId = partnerCode + new Date().getTime();
                 var orderId = requestId;
                 var orderInfo = `thanh toan ${findCart._id}`; // nội dung giao dịch thanh toán
-                var redirectUrl = 'http://localhost:3000/api/check-payment-momo'; // 8080
-                var ipnUrl = 'http://localhost:3000/api/check-payment-momo';
+                var redirectUrl = `${req.protocol}://${req.get('host')}/api/check-payment-momo`; // 8080
+                var ipnUrl = `${req.protocol}://${req.get('host')}/api/check-payment-momo`;
                 var amount = findCart.totalPrice;
                 var requestType = 'captureWallet';
                 var extraData = ''; //pass empty value if your merchant does not have stores
@@ -129,7 +129,7 @@ class PaymentsController {
                     vnp_TxnRef: txnRef,
                     vnp_OrderInfo: `${findCart._id}`,
                     vnp_OrderType: ProductCode.Other,
-                    vnp_ReturnUrl: `http://localhost:3000/api/check-payment-vnpay`, //
+                    vnp_ReturnUrl: `${req.protocol}://${req.get('host')}/api/check-payment-vnpay`, //
                     vnp_Locale: VnpLocale.VN, // 'vn' hoặc 'en'
                     vnp_CreateDate: dateFormat(new Date()), // tùy chọn, mặc định là hiện tại
                     vnp_ExpireDate: dateFormat(tomorrow), // tùy chọn
@@ -181,7 +181,7 @@ class PaymentsController {
             });
             await newPayment.save();
             await findCart.deleteOne();
-            return res.redirect(`http://localhost:5173/payment/${newPayment._id}`);
+            return res.redirect(`${req.protocol}://${req.get('host')}/payment/${newPayment._id}`);
         }
     }
 

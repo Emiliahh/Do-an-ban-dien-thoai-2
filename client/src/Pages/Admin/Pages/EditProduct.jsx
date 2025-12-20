@@ -60,14 +60,18 @@ const EditProduct = ({ setActiveComponent, productId }) => {
         try {
             let imageUrls = [];
 
-            // Chỉ lấy và upload các ảnh mới
+            // Phân loại ảnh cũ và ảnh mới
             const newImages = values.image.filter((file) => file.originFileObj);
+            const oldImages = values.image.filter((file) => !file.originFileObj).map((file) => file.url);
+
+            // Upload ảnh mới nếu có
+            let newImageUrls = [];
             if (newImages.length > 0) {
-                imageUrls = await handleUpload(newImages);
-            } else {
-                // Nếu không có ảnh mới, giữ lại ảnh cũ
-                imageUrls = values.image.map((file) => file.url);
+                newImageUrls = await handleUpload(newImages);
             }
+
+            // Gộp ảnh cũ và ảnh mới
+            imageUrls = [...oldImages, ...newImageUrls];
 
             // Tạo dữ liệu sản phẩm với URLs ảnh
             const productData = {

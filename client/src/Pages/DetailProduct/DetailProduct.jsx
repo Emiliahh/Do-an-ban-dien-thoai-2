@@ -150,7 +150,7 @@ function DetailProduct() {
                         >
                             {dataProduct?.images?.map((item, index) => (
                                 <SwiperSlide key={index}>
-                                    <img src={item} />
+                                    <img src={item.startsWith('http') ? item : `${import.meta.env.VITE_API_URL}/uploads/images/${item}`} />
                                 </SwiperSlide>
                             ))}
                         </Swiper>
@@ -290,7 +290,7 @@ function DetailProduct() {
                         <img
                             src={
                                 dataUser?.avatar
-                                    ? `http://localhost:3000/uploads/avatars/${dataUser.avatar}`
+                                    ? `${import.meta.env.VITE_API_URL}/uploads/avatars/${dataUser.avatar}`
                                     : 'https://doanwebsite.com/assets/userNotFound-DUSu2NMF.png'
                             }
                             alt=""
@@ -311,7 +311,7 @@ function DetailProduct() {
                         <img
                             src={
                                 item.avatar
-                                    ? `http://localhost:3000/uploads/avatars/${item.avatar}`
+                                    ? `${import.meta.env.VITE_API_URL}/uploads/avatars/${item.avatar}`
                                     : 'https://doanwebsite.com/assets/userNotFound-DUSu2NMF.png'
                             }
                             alt=""
@@ -330,7 +330,7 @@ function DetailProduct() {
                                     <img
                                         src={
                                             item2.avatar
-                                                ? `http://localhost:3000/uploads/avatars/${item2.avatar}`
+                                                ? `${import.meta.env.VITE_API_URL}/uploads/avatars/${item2.avatar}`
                                                 : 'https://doanwebsite.com/assets/userNotFound-DUSu2NMF.png'
                                         }
                                         alt=""
@@ -354,7 +354,7 @@ function DetailProduct() {
                                         style={{ width: '35px', height: '35px' }}
                                         src={
                                             dataUser?.avatar
-                                                ? `http://localhost:3000/uploads/avatars/${dataUser.avatar}`
+                                                ? `${import.meta.env.VITE_API_URL}/uploads/avatars/${dataUser.avatar}`
                                                 : 'https://doanwebsite.com/assets/userNotFound-DUSu2NMF.png'
                                         }
                                         alt=""
