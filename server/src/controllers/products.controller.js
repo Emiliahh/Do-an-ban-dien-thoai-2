@@ -140,7 +140,38 @@ class controllerProducts {
 
     async editProduct(req, res) {
         try {
-            const { _id, name, price, description, category, attributes, images, stock, priceDiscount } = req.body;
+            const {
+                _id,
+                name,
+                price,
+                description,
+                category,
+                images,
+                stock,
+                priceDiscount,
+                cpu,
+                screen,
+                gpu,
+                storage,
+                screenHz,
+                ram,
+                battery,
+                camera,
+                weight,
+            } = req.body;
+
+            const attributes = {
+                cpu,
+                screen,
+                gpu,
+                storage,
+                screenHz,
+                ram,
+                battery,
+                camera,
+                weight,
+            };
+
             const product = await modelProduct.findByIdAndUpdate(_id, {
                 name,
                 price,
