@@ -160,14 +160,17 @@ docker-compose up -d --build
 
 ## 5. Tài khoản Demo
 
-| Vai trò | Tài khoản (Email/Username) | Mật khẩu |
-| ------- | -------------------------- | -------- |
-| Admin   | admin@gmail.com            | 123456   |
-| User    | user@gmail.com             | 123456   |
+| Vai trò | Tài khoản (Email/Username) | Mật khẩu  |
+| ------- | -------------------------- | --------- |
+| Admin   | remaru99@gmail.com         | Huypro123 |
 
 _(Lưu ý: Cập nhật thông tin tài khoản thực tế nếu khác)_
 
-## 6. Một số hình ảnh kết quả
+## 6. Link demo deploy
+
+🔗 Website Demo: [https://shoplinhtinh.shop/](https://shoplinhtinh.shop/)
+
+## 7. Một số hình ảnh kết quả
 
 ### Trang chủ
 
