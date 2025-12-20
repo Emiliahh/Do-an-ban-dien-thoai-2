@@ -264,9 +264,9 @@ class controllerUsers {
 
         res.cookie('logged', 1, {
             httpOnly: false,
-            secure: true, 
+            secure: true,
             sameSite: 'Strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000, 
+            maxAge: 7 * 24 * 60 * 60 * 1000,
         });
 
         new OK({ message: 'Refresh token thành công', metadata: { token } }).send(res);
@@ -452,10 +452,15 @@ class controllerUsers {
 
     async sendMailForgotPassword(req, res) {
         const { email } = req.body;
+        console.log(email);
         if (!email) {
             throw new BadRequestError('Vui lòng nhập email');
         }
-        const user = await modelUser.findOne({ email });
+        // all user =
+        const allUser = await modelUser.find();
+        console.log(allUser);
+        const user = await modelUser.findOne({ email: email });
+        console.log(user);
         if (!user) {
             throw new BadRequestError('Không tìm thấy người dùng');
         }
@@ -515,9 +520,14 @@ class controllerUsers {
 
     async updateInfoUser(req, res) {
         const { id } = req.user;
-        const avatar = req.file.filename;
         const { fullName, phone, email, address } = req.body;
-        await modelUser.updateOne({ _id: id }, { fullName, phone, email, address, avatar });
+        const updateData = { fullName, phone, email, address };
+
+        if (req.file) {
+            updateData.avatar = req.file.filename;
+        }
+
+        await modelUser.updateOne({ _id: id }, updateData);
         new OK({ message: 'Cập nhật thông tin người dùng thành công' }).send(res);
     }
 

@@ -50,7 +50,7 @@ function InfoUser({ isOpen, setIsOpen, activeTab }) {
             await requestUpdateInfoUser(formData);
             message.success('Cập nhật thông tin người dùng thành công');
             window.location.reload();
-        } catch (error) {
+        } catch {
             message.error('Cập nhật thông tin người dùng thất bại');
         }
     };

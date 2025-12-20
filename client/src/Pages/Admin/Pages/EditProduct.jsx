@@ -5,7 +5,7 @@ import { requestEditProduct, requestUploadImage, requestGetProductById } from '.
 
 const EditProduct = ({ setActiveComponent, productId }) => {
     const [form] = Form.useForm();
-    const [imageFiles, setImageFiles] = useState([]);
+    const [_, setImageFiles] = useState([]);
 
     useEffect(() => {
         const fetchProductData = async () => {
@@ -14,7 +14,7 @@ const EditProduct = ({ setActiveComponent, productId }) => {
                 const product = response.metadata;
 
                 // Convert image URLs to Upload component format
-                const imageFileList = product.images.map((url, index) => ({
+                const imageFileList = product.data.images.map((url, index) => ({
                     uid: `-${index}`,
                     name: `image-${index}`,
                     status: 'done',
@@ -22,7 +22,8 @@ const EditProduct = ({ setActiveComponent, productId }) => {
                 }));
 
                 form.setFieldsValue({
-                    ...product,
+                    ...product.data,
+                    ...product.data.attributes,
                     image: imageFileList,
                 });
                 setImageFiles(imageFileList);

@@ -25,7 +25,7 @@ function OrderHistory() {
                 <div className={cx('products-list')}>
                     {products.map((product) => (
                         <div key={product.productId} className={cx('product-item')}>
-                            <img src={product.image} alt={product.name} />
+                            <img src={product.image || 'https://placehold.co/600x400'} alt={product.name} />
                             <div className={cx('product-info')}>
                                 <span className={cx('product-name')}>{product.name}</span>
                                 <span className={cx('product-price')}>
@@ -220,7 +220,7 @@ function OrderHistory() {
                                         })}
                                         onClick={() => setSelectedProduct(product.productId)}
                                     >
-                                        <img src={product.image} alt={product.name} />
+                                        <img src={product.image || 'https://placehold.co/600x400'} alt={product.name} />
                                         <div className={cx('product-details')}>
                                             <h4>{product.name}</h4>
                                             <span className={cx('price')}>

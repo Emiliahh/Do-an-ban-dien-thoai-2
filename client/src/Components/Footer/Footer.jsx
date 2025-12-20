@@ -44,10 +44,8 @@ function Footer() {
                 <div className={cx('address')}>
                     <h4>Hà Nội:</h4>
                     <ul>
-                        <li>Cơ sở 1: 19Đ Nguyễn Hữu Thọ, Q. 7, Hồ Chí Minh. SĐT: 0869051659</li>
-                        <li>Cơ sở 1: 19Đ Nguyễn Hữu Thọ, Q. 7, Hồ Chí Minh. SĐT: 0869051659</li>
-                        <li>Cơ sở 1: 19Đ Nguyễn Hữu Thọ, Q. 7, Hồ Chí Minh. SĐT: 0869051659</li>
-                        <li>Cơ sở 1: 19Đ Nguyễn Hữu Thọ, Q. 7, Hồ Chí Minh. SĐT: 0869051659</li>
+                        <li>Cơ sở 1: Cầu Giấy, Q. Cầu Giấy, Hà Nội. SĐT: 0869051659</li>
+                        <li>Cơ sở 2: 19Đ Nguyễn Hữu Thọ, Q. 7, Hồ Chí Minh. SĐT: 0869051659</li>
                         <li>(Các cơ sở đều có chỗ để tàu vũ trụ)</li>
                     </ul>
                 </div>

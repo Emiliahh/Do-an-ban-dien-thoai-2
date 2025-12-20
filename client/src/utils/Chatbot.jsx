@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Chatbot.module.scss';
-import { requestAskQuestion } from '../config/request';
+import { requestAskQuestion } from '../Config/request';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments, faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -32,7 +32,7 @@ const Chatbot = () => {
             try {
                 const response = await requestAskQuestion({ question: userMessage });
                 setMessages((prev) => [...prev, { text: response, sender: 'bot' }]);
-            } catch (error) {
+            } catch {
                 setMessages((prev) => [
                     ...prev,
                     {
@@ -44,6 +44,45 @@ const Chatbot = () => {
                 setIsLoading(false);
             }
         }
+    };
+
+    const renderMessageWithLinks = (text) => {
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        const parts = text.split(urlRegex);
+        return parts.map((part, index) => {
+            if (urlRegex.test(part)) {
+                const isImage = /\.(jpeg|jpg|gif|png|webp)$/i.test(part);
+                if (isImage) {
+                    return (
+                        <div key={index} style={{ marginTop: '5px', marginBottom: '5px' }}>
+                            <img
+                                src={part}
+                                alt="Product"
+                                style={{
+                                    maxWidth: '100%',
+                                    borderRadius: '8px',
+                                    maxHeight: '150px',
+                                    objectFit: 'cover',
+                                    display: 'block',
+                                }}
+                            />
+                        </div>
+                    );
+                }
+                return (
+                    <a
+                        key={index}
+                        href={part}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: '#0066cc', textDecoration: 'underline', wordBreak: 'break-all' }}
+                    >
+                        {part}
+                    </a>
+                );
+            }
+            return part;
+        });
     };
 
     return (
@@ -68,7 +107,7 @@ const Chatbot = () => {
                                     message.sender === 'user' ? styles.userMessage : styles.botMessage
                                 }`}
                             >
-                                <div className={styles.messageContent}>{message.text}</div>
+                                <div className={styles.messageContent}>{renderMessageWithLinks(message.text)}</div>
                             </div>
                         ))}
                         {isLoading && (

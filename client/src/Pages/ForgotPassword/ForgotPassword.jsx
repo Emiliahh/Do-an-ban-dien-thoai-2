@@ -31,6 +31,7 @@ function ForgotPassword() {
             message.success('Mã OTP đã được gửi đến email của bạn!');
             setIsEmailSent(true);
         } catch (error) {
+            console.error(error);
             message.error('Có lỗi xảy ra. Vui lòng thử lại!');
         }
     };
@@ -43,6 +44,7 @@ function ForgotPassword() {
                 navigate('/login');
             }, 1000);
         } catch (error) {
+            console.error(error);
             message.error('Có lỗi xảy ra. Vui lòng thử lại!');
         }
     };

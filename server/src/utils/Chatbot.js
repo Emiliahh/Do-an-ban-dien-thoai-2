@@ -17,6 +17,8 @@ async function askQuestion(question) {
         Giá: ${product.price.toLocaleString('vi-VN')}đ ${
                     product.priceDiscount ? `(Giảm giá: ${product.priceDiscount.toLocaleString('vi-VN')}đ)` : ''
                 }
+        Link chi tiết: ${process.env.CLIENT_URL}/product/${product._id}
+        Hình ảnh: ${product.images?.[0] || ''}
         Thông số chi tiết:
         ${Object.entries(product.attributes || {})
             .map(([key, value]) => `- ${key}: ${value}`)
@@ -41,6 +43,8 @@ async function askQuestion(question) {
         - Dùng emoji để sinh động
         - Nếu khách chào hỏi, chỉ cần chào lại thân thiện
         - Trả lời tiếng Việt, tự nhiên như đang chat
+        - Khi nhắc đến sản phẩm nào, BẮT BUỘC phải kèm theo Link chi tiết VÀ Link hình ảnh (nếu có) của sản phẩm đó.
+        - Các đường dẫn (URL) phải được tách biệt bằng khoảng trắng để dễ hiển thị.
         `;
 
         const result = await model.generateContent(prompt);

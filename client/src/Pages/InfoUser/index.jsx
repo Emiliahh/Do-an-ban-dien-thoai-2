@@ -7,6 +7,7 @@ import { useStore } from '../../hooks/useStore';
 import { useState } from 'react';
 import { requestLogout } from '../../Config/request';
 import { useNavigate } from 'react-router-dom';
+import { message } from 'antd';
 
 const cx = classNames.bind(styles);
 
@@ -41,8 +42,9 @@ function InfoUserPage() {
                         <div className={cx('avatar')}>
                             <img
                                 src={
-                                    `http://localhost:3000/uploads/avatars/${dataUser.avatar}` ||
-                                    'https://doanwebsite.com/assets/userNotFound-DUSu2NMF.png'
+                                    dataUser.avatar
+                                        ? `http://localhost:3000/uploads/avatars/${dataUser.avatar}`
+                                        : 'https://doanwebsite.com/assets/userNotFound-DUSu2NMF.png'
                                 }
                                 alt="avatar"
                             />
