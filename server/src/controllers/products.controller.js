@@ -80,7 +80,7 @@ class controllerProducts {
         }
         const files = req.files;
         const data = files.map((file) => {
-            return `http://localhost:3000/uploads/images/${file.filename}`;
+            return `${req.protocol}://${req.get('host')}/uploads/images/${file.filename}`;
         });
 
         new OK({ message: 'Tạo sản phẩm thông tin', metadata: data }).send(res);
