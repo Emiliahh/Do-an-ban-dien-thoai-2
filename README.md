@@ -10,15 +10,15 @@
 
 ## 2. Danh sách thành viên nhóm
 
-| STT | Họ và tên        | Mã sinh viên | Phân chia công việc |
-| --- | ---------------- | ------------ | ------------------- |
-| 1   | Nguyễn Như Huy   | 22810310216  | Deploy với code     |
-| 2   | Nguyễn Đăng Mạnh | 228          | Phế vật             |
-| 3   | Nguyễn Tuấn Phi  | 22810310215  | Code và làm báo cáo |
+| STT | Họ và tên        | Mã sinh viên | Phân chia công việc     |
+| --- | ---------------- | ------------ | ----------------------- |
+| 1   | Nguyễn Như Huy   | 22810310216  | Deploy với code backend |
+| 2   | Nguyễn Đăng Mạnh | 22810310215  | Frontend và test        |
+| 3   | Nguyễn Tuấn Phi  | 22810310217  | Frontend và test        |
 
 ## 3. Video Demo
 
-**Video demo *: [Google Drive - Video Demo](https://drive.google.com/file/d/1IkM0iKMp-eSilfIZUvqO5vzxTdbuHy0S/view?usp=sharing)
+\*_Video demo _: [Google Drive - Video Demo](https://drive.google.com/file/d/1IkM0iKMp-eSilfIZUvqO5vzxTdbuHy0S/view?usp=sharing)
 
 ## 4. Công nghệ sử dụng
 
