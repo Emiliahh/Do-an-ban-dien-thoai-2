@@ -181,7 +181,7 @@ class PaymentsController {
             });
             await newPayment.save();
             await findCart.deleteOne();
-            return res.redirect(`http://localhost:5173/payment/${newPayment._id}`);
+            return res.redirect(`${req.protocol}://${req.get('host')}/payment/${newPayment._id}`);
         }
     }
 

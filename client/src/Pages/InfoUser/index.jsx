@@ -43,7 +43,7 @@ function InfoUserPage() {
                             <img
                                 src={
                                     dataUser.avatar
-                                        ? `http://localhost:3000/uploads/avatars/${dataUser.avatar}`
+                                        ? `${import.meta.env.VITE_API_URL}/uploads/avatars/${dataUser.avatar}`
                                         : 'https://doanwebsite.com/assets/userNotFound-DUSu2NMF.png'
                                 }
                                 alt="avatar"

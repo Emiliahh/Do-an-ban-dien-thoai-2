@@ -524,7 +524,7 @@ class controllerUsers {
         const updateData = { fullName, phone, email, address };
 
         if (req.file) {
-            updateData.avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/${req.file.filename}`;
+            updateData.avatar = req.file.filename;
         }
 
         await modelUser.updateOne({ _id: id }, updateData);

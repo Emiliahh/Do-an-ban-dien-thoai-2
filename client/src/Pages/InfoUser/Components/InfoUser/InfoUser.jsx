@@ -28,7 +28,7 @@ function InfoUser({ isOpen, setIsOpen, activeTab }) {
         setEmail(dataUser.email);
         setPhone(dataUser.phone);
         setAddress(dataUser.address || 'Chưa cập nhật');
-        setAvatar(`http://localhost:3000/uploads/avatars/${dataUser.avatar}`);
+        setAvatar(`${import.meta.env.VITE_API_URL}/uploads/avatars/${dataUser.avatar}`);
 
         form.setFieldsValue({
             fullName: dataUser.fullName,
