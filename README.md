@@ -12,11 +12,15 @@
 
 | STT | Họ và tên        | Mã sinh viên | Phân chia công việc |
 | --- | ---------------- | ------------ | ------------------- |
-| 1   | Nguyễn Như Huy   | 22810310216  | [Công việc 1]       |
-| 2   | Nguyễn Đăng Mạnh | 228          | [Công việc 2]       |
-| 3   | Nguyễn Tuấn Phi  | 22810310215  | [Công việc 3]       |
+| 1   | Nguyễn Như Huy   | 22810310216  | Deploy với code     |
+| 2   | Nguyễn Đăng Mạnh | 228          | Phế vật             |
+| 3   | Nguyễn Tuấn Phi  | 22810310215  | Code và làm báo cáo |
 
-## 3. Công nghệ sử dụng
+## 3. Video Demo
+
+**Video demo *: [Google Drive - Video Demo](https://drive.google.com/file/d/1IkM0iKMp-eSilfIZUvqO5vzxTdbuHy0S/view?usp=sharing)
+
+## 4. Công nghệ sử dụng
 
 -   **Frontend**: ReactJS, Vite, Ant Design, SCSS, Axios.
 -   **Backend**: Node.js, Express.js.
@@ -90,12 +94,69 @@ Client sẽ chạy tại `http://localhost:5173` (hoặc port khác tùy cấu h
 
 ### Cài đặt và chạy bằng Docker
 
-
 ```bash
 docker-compose up --build
 ```
 
 Hệ thống sẽ khởi chạy các container cho Node.js server và Nginx (phục vụ frontend).
+
+### Cấu hình cho VPS/Production
+
+#### 1. Đổi Domain/Host
+
+Mở file `nginx/default.conf` và thay đổi `server_name`:
+
+```nginx
+server_name your-domain.com www.your-domain.com;  # Thay bằng domain của bạn
+```
+
+#### 2. Cấu hình SSL
+
+Copy certificate và key vào thư mục `nginx/ssl/`:
+
+```bash
+nginx/ssl/
+  ├── your-domain.pem      # Certificate file
+  └── your-domain.key      # Private key file
+```
+
+Sau đó cập nhật đường dẫn trong `nginx/default.conf`:
+
+```nginx
+ssl_certificate /etc/nginx/ssl/your-domain.pem;
+ssl_certificate_key /etc/nginx/ssl/your-domain.key;
+```
+
+#### 3. Cập nhật biến môi trường
+
+**Server (`server/.env`):**
+
+```env
+PORT=3000
+CONNECT_DB=mongodb+srv://...                    # MongoDB connection string
+CLIENT_URL=https://your-domain.com              # Frontend URL (Production)
+SECRET_CRYPTO=your_secret_key
+USER_EMAIL=your_email@gmail.com
+# ... các biến khác giữ nguyên
+```
+
+**Client (`client/.env`):**
+
+```env
+VITE_API_URL=https://your-domain.com           # API URL (Production)
+VITE_SECRET_CRYPTO=your_secret_key             # Trùng với server
+VITE_CLIENT_ID=your_google_client_id
+```
+
+#### 4. Deploy
+
+```bash
+# Build client
+cd client && npm install && npm run build && cd ..
+
+# Chạy với Docker
+docker-compose up -d --build
+```
 
 ## 5. Tài khoản Demo
 

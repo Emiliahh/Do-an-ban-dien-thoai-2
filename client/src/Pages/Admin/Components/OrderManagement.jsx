@@ -9,6 +9,7 @@ import ModalDetailOrder from './ModalDetailOrder';
 const OrderManagement = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [searchText, setSearchText] = useState('');
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState('');
@@ -134,9 +135,23 @@ const OrderManagement = () => {
         <div>
             <Space style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between' }}>
                 <h2>Quản lý đơn hàng</h2>
-                <Input placeholder="Tìm kiếm đơn hàng" prefix={<SearchOutlined />} />
+                <Input 
+                    placeholder="Tìm kiếm đơn hàng (mã đơn, tên, SĐT)" 
+                    prefix={<SearchOutlined />} 
+                    onChange={(e) => setSearchText(e.target.value)}
+                    value={searchText}
+                    allowClear
+                />
             </Space>
-            <Table columns={columns} dataSource={orders} loading={loading} />
+            <Table 
+                columns={columns} 
+                dataSource={orders.filter((order) => 
+                    order.id.toLowerCase().includes(searchText.toLowerCase()) ||
+                    order.customer.toLowerCase().includes(searchText.toLowerCase()) ||
+                    order.phone.includes(searchText)
+                )} 
+                loading={loading} 
+            />
             <ModalDetailOrder
                 isModalVisible={isModalVisible}
                 setIsModalVisible={setIsModalVisible}

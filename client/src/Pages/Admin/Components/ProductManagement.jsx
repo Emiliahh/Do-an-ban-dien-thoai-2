@@ -80,12 +80,8 @@ const ProductManagement = ({ setActiveComponent, setProductId }) => {
         setProductId(record.id);
         setActiveComponent('edit-product'); // Chuyển sang component AddProduct
     };
-
-    const handleSearch = (value) => {
-        console.log('Search:', value);
-    };
-
     const [products, setProducts] = useState([]);
+    const [searchText, setSearchText] = useState('');
     const fetchData = async () => {
         const res = await requestGetAllProduct();
         setProducts(res.metadata);
@@ -94,15 +90,19 @@ const ProductManagement = ({ setActiveComponent, setProductId }) => {
         fetchData();
     }, []);
 
-    const data = products.map((product) => ({
-        key: product._id,
-        id: product._id,
-        name: product.name,
-        price: product.price,
-        priceDiscount: product.priceDiscount,
-        stock: product.stock,
-        image: product.images[0],
-    }));
+    const data = products
+        .filter((product) => 
+            product.name.toLowerCase().includes(searchText.toLowerCase())
+        )
+        .map((product) => ({
+            key: product._id,
+            id: product._id,
+            name: product.name,
+            price: product.price,
+            priceDiscount: product.priceDiscount,
+            stock: product.stock,
+            image: product.images[0],
+        }));
 
     const handleDelete = async (key) => {
         try {
@@ -118,7 +118,13 @@ const ProductManagement = ({ setActiveComponent, setProductId }) => {
         <div>
             <Card title="Quản lý sản phẩm">
                 <Space style={{ marginBottom: 16 }}>
-                    <Input.Search placeholder="Tìm kiếm sản phẩm" onSearch={handleSearch} style={{ width: 300 }} />
+                    <Input.Search 
+                        placeholder="Tìm kiếm sản phẩm" 
+                        onChange={(e) => setSearchText(e.target.value)}
+                        value={searchText}
+                        allowClear
+                        style={{ width: 300 }} 
+                    />
                     <Button type="primary" icon={<PlusOutlined />} onClick={handleAdd}>
                         Thêm sản phẩm
                     </Button>
