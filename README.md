@@ -12,11 +12,15 @@
 
 | STT | Họ và tên        | Mã sinh viên | Phân chia công việc |
 | --- | ---------------- | ------------ | ------------------- |
-| 1   | Nguyễn Như Huy   | 22810310216  | [Công việc 1]       |
-| 2   | Nguyễn Đăng Mạnh | 228          | [Công việc 2]       |
-| 3   | Nguyễn Tuấn Phi  | 22810310215  | [Công việc 3]       |
+| 1   | Nguyễn Như Huy   | 22810310216  | Deploy với code     |
+| 2   | Nguyễn Đăng Mạnh | 228          | Phế vật             |
+| 3   | Nguyễn Tuấn Phi  | 22810310215  | Code và làm báo cáo |
 
-## 3. Công nghệ sử dụng
+## 3. Video Demo
+
+**Video demo *: [Google Drive - Video Demo](https://drive.google.com/file/d/1IkM0iKMp-eSilfIZUvqO5vzxTdbuHy0S/view?usp=sharing)
+
+## 4. Công nghệ sử dụng
 
 -   **Frontend**: ReactJS, Vite, Ant Design, SCSS, Axios.
 -   **Backend**: Node.js, Express.js.
